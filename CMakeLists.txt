@@ -11,7 +11,7 @@ else()
 endif()
 
 # Encontra todos os arquivos .c na pasta
-file(GLOB SOURCE_FILES "*.C")
+file(GLOB SOURCE_FILES "src/*.C")
 
 # Para cada arquivo encontrado, cria um executável
 foreach(SOURCE_FILE ${SOURCE_FILES})
