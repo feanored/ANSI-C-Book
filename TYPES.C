@@ -1,0 +1,78 @@
+#include <stdio.h>
+
+#define SPACE 32
+
+char getOp(){
+  char op;
+  printf("What type to test?\n");
+  printf("Uns. [s]hort | Uns. [i]nt | Uns. [l]ong\n");
+  printf("[S]hort | [I]nt | [L]ong\n? ");
+  op = 0;
+  while (op != 's' && op != 'i' && op != 'l' &&
+         op != 'S' && op != 'I' && op != 'L' &&
+         op != SPACE)
+    scanf_s("%c", &op, 1);
+  while (getchar() != '\n'); // clears buffer
+  return op;
+}
+
+void main() {
+  int op, ch;
+
+  unsigned short s;
+  unsigned int i;
+  unsigned long l;
+  short S;
+  int I;
+  long L;
+
+  l = i = s = 0;
+  L = I = S = 0;
+
+  op = getOp();
+  ch = 0;
+  while(op != SPACE) {
+    switch(op) {
+      case 's':
+        if (++s % 500 == 0)
+          printf("unsigned short: %i\n", s);
+        if (s % 10000 == 0)
+          ch = getchar();
+        break;
+      case 'i':
+        if (++i % 500000000 == 0)
+          printf("unsigned int: %u\n", i);
+        if (i % 10000000000 == 0)
+          ch = getchar();
+        break;
+      case 'l':
+        if (++l % 500000000 == 0)
+          printf("unsigned long: %u\n", l);
+        if (l % 10000000000 == 0)
+          ch = getchar();
+        break;
+      case 'S':
+        if (++S % 500 == 0)
+          printf("short: %i\n", S);
+        if (S % 10000 == 0)
+          ch = getchar();
+        break;
+      case 'I':
+        if (++I % 500000000 == 0)
+          printf("int: %i\n", I);
+        if (I % 10000000000 == 0)
+          ch = getchar();
+        break;
+      case 'L':
+        if (++L % 500000000 == 0)
+          printf("long: %i\n", L);
+        if (L % 10000000000 == 0)
+          ch = getchar();
+        break;
+    }
+    if (ch == SPACE) {
+      op = getOp(); // prompts for a new test
+      ch = 0;
+    }
+  }
+}
