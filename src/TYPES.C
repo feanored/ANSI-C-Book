@@ -11,12 +11,12 @@ char getOp(){
   while (op != 's' && op != 'i' && op != 'l' &&
          op != 'S' && op != 'I' && op != 'L' &&
          op != SPACE)
-    scanf_s("%c", &op, 1);
+    scanf("%c", &op);
   while (getchar() != '\n'); // clears buffer
   return op;
 }
 
-void main() {
+int main() {
   int op, ch;
 
   unsigned short s;
@@ -35,7 +35,7 @@ void main() {
     switch(op) {
       case 's':
         if (++s % 500 == 0)
-          printf("unsigned short: %i\n", s);
+          printf("unsigned short: %u\n", s);
         if (s % 10000 == 0)
           ch = getchar();
         break;
@@ -47,25 +47,25 @@ void main() {
         break;
       case 'l':
         if (++l % 500000000 == 0)
-          printf("unsigned long: %u\n", l);
+          printf("unsigned long: %lu\n", l);
         if (l % 10000000000 == 0)
           ch = getchar();
         break;
       case 'S':
         if (++S % 500 == 0)
-          printf("short: %i\n", S);
+          printf("short: %d\n", S);
         if (S % 10000 == 0)
           ch = getchar();
         break;
       case 'I':
         if (++I % 500000000 == 0)
-          printf("int: %i\n", I);
+          printf("int: %d\n", I);
         if (I % 10000000000 == 0)
           ch = getchar();
         break;
       case 'L':
         if (++L % 500000000 == 0)
-          printf("long: %i\n", L);
+          printf("long: %ld\n", L);
         if (L % 10000000000 == 0)
           ch = getchar();
         break;

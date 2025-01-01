@@ -3,7 +3,7 @@
 #define True  1
 #define False 0
 
-void main() {
+int main() {
   printf("\n\nHello Pitu! Amo meu tuco!\n");
 
   if (True) printf("\nDef True exists!\n");

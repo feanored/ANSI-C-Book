@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-void main() {
+int main() {
   //printf("%d", EOF); // Ex. 1-7 => EOF == -1
   int c;
   while ((c = getchar()) != EOF) {

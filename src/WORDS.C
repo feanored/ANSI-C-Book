@@ -3,7 +3,7 @@
 #define OUT 0
 #define IN  1
 
-void main() {
+int main() {
   long nw;
   int c, state;
 

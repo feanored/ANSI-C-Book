@@ -17,4 +17,6 @@ void v2() {
   printf("Chars #: %ld\n", cont);
 }
 
-void main() { v2(); }
+int main() { 
+  v2();
+}

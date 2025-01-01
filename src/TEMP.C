@@ -34,6 +34,6 @@ void main_d() {
   getchar();
 }
 
-void main() {
+int main() {
   main_c();
 }
