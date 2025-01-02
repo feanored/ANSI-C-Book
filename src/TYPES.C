@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
 #define SPACE 32
@@ -11,7 +12,7 @@ char getOp(){
   while (op != 's' && op != 'i' && op != 'l' &&
          op != 'S' && op != 'I' && op != 'L' &&
          op != SPACE)
-    scanf("%c", &op);
+    (void) scanf("%c", &op);
   while (getchar() != '\n'); // clears buffer
   return op;
 }
