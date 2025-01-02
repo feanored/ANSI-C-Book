@@ -35,9 +35,9 @@ int main() {
   while(op != SPACE) {
     switch(op) {
       case 's':
-        if (++s % 500 == 0)
+        if (++s % 5000 == 0)
           printf("unsigned short: %u\n", s);
-        if (s % 10000 == 0)
+        if (s % 100000 == 0)
           ch = getchar();
         break;
       case 'i':
@@ -53,9 +53,9 @@ int main() {
           ch = getchar();
         break;
       case 'S':
-        if (++S % 500 == 0)
+        if (++S % 5000 == 0)
           printf("short: %d\n", S);
-        if (S % 10000 == 0)
+        if (S % 100000 == 0)
           ch = getchar();
         break;
       case 'I':
