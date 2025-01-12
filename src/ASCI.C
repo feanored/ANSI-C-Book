@@ -1,16 +1,31 @@
 #include <stdio.h>
 
+#ifdef __APPLE__
+#define INI 32
+#define END 128
+#else
+#define INI 1
+#define END 255
+#endif
+
+void line() {
+  printf("\n");
+}
+
+void tab() {
+  printf("\t");
+}
+
 int main() {
   unsigned char c;
-  for (c=1; c<255; c++) {
-    // ignore null code
-    if (c == 26) continue;
+  for (c = INI; c < END; c++) {
+    if (c == 10 || c == 13 || c == 26)
+      continue; // ignore some codes
     printf("%3u -> %c", c, c);
-    if (c == 10 || c == 13) continue;
     if (c % 5 == 0)
-      printf("\n");
+      line();
     else
-      printf("\t");
+      tab();
   }
-  printf("\n");
+  line();
 }
