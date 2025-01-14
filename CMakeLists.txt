@@ -3,12 +3,16 @@ cmake_minimum_required(VERSION 3.10)
 # Projeto C
 project(AnsiDev C)
 
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Release)
+endif()
+
 # Define flags para conformidade com ANSI C
 if (MSVC)
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} /Za /O2 /W4")
 elseif (${CMAKE_GENERATOR} MATCHES "Xcode")
     set(CMAKE_CXX_STANDARD 11)
-    set(CMAKE_CXX_STANDARD_REQUIRED ON)
+    set(CMAKE_CXX_STANDARD_REQUIRED True)
 else()
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c++98 -Wall")
 endif()
