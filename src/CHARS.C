@@ -14,7 +14,7 @@ void v2() {
     if (c != '\n' && c != '\t')
       cont++;
   }
-  printf("Chars #: %ld\n", cont);
+  printf(" chars: %ld\n", cont);
 }
 
 int main() { 
