@@ -7,7 +7,7 @@
 #define int32_t long
 #endif
 
-int main(int argc, char** argv) {
+int main() {
 	char	bytearray[4] = { 0x01,0x02,0x03,0x04 };
 	long* b = (int32_t*)bytearray;
 

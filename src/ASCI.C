@@ -19,14 +19,15 @@ void tab() {
 int main() {
   unsigned char c;
   for (c = INI; c < END; c++) {
-    if (c == 10 || c == 13 || c == 26)
+    if (c == 10 || c == 13 || c == 26) {
       continue; // ignore some codes
+    }
     printf("%3u -> %c", c, c);
-    if (c % 5 == 0)
+    if (c % 6 == 0)
       line();
     else
       tab();
   }
   line();
-  c = getchar();
+  return getchar() != 10;
 }
