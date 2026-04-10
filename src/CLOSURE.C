@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <locale.h>
 
-//-------BLOCO DE C”DIGO EQUIVALENTE AO PYTHON NATIVO--------------------//
+//-------BLOCO DE CODIGO EQUIVALENTE AO PYTHON NATIVO--------------------//
 
 typedef struct {
   int* val;  // Armazena ponteiros
@@ -19,14 +19,21 @@ static void ponteiros(Func1** funcs) {
     i = j;
     funcs[j] = (Func1*) malloc(sizeof(int));
     if (funcs[j]) {
-      funcs[j]->val = &i;  // armazena endereÁo de i
+      funcs[j]->val = &i;  // armazena endereço de i
     }
   }
   i = 7; // depois do for, i vale 2
+  
+  printf("Interno sem closure: [");
+  for (int j = 0; j < 3; j++) {
+    printf("%d", call_func1(funcs[j]));
+    if (j < 2) printf(", ");
+  }
+  printf("]\n");
 }
 
 
-//-------BLOCO DE C”DIGO EQUIVALENTE AO PYTHON COM CLOSURE-------------------//
+//-------BLOCO DE CODIGO EQUIVALENTE AO PYTHON COM CLOSURE-------------------//
 
 typedef struct {
   int val; // Armazena valores
@@ -54,7 +61,7 @@ int main() {
   Func1* func1[3];
   ponteiros(func1);
 
-  printf("Resultados cÛdigo da quest„o:  [");
+  printf("Externo sem closure: [");
   for (int j = 0; j < 3; j++) {
     printf("%d", call_func1(func1[j]));
     if (j < 2) printf(", ");
@@ -67,7 +74,7 @@ int main() {
   Func2* func2[3];
   closure(func2);
 
-  printf("Resultados cÛdigo com closure: [");
+  printf("Externo com closure: [");
   for (int j = 0; j < 3; j++) {
     printf("%d", call_func2(func2[j]));
     if (j < 2) printf(", ");

@@ -2,12 +2,12 @@
 
 int main() {
   for (int i = 0; i < 1E9; i++) {
-
+#ifdef _WIN64
     if (GetAsyncKeyState(0x13) & 0x8000) { // tecla 'Pause'
       printf("\n[PAUSE detectado] Programa suspenso. Pressione ENTER para retomar.\n");
       getchar();
     }
-
+#endif
     printf("%d\n", i);
 
   }
