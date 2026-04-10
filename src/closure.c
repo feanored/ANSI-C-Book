@@ -8,28 +8,23 @@ typedef struct {
   int* val;  // Armazena ponteiros
 } Func1;
 
-int call_func1(Func1* f) {
+static int call_func1(Func1* f) {
   return *(f->val); // acessa valor armazenado no ponteiro
 }
 
-void ponteiros() {
-  Func1* funcs[3];
+static void ponteiros(Func1** funcs) {
   int i = 0;
 
-  for (i = 0; i < 3; ++i) {
-    funcs[i] = malloc(sizeof(int));
-    funcs[i]->val = &i;  // armazena endereço de i
+  for (int j = 0; j < 3; ++j) {
+    i = j;
+    funcs[j] = malloc(sizeof(int));
+    if (funcs[j]) {
+      funcs[j]->val = &i;  // armazena endereço de i
+    }
   }
-  i--; // depois do for, i valeria 3
-
-  printf("Resultados código da questão:  [");
-  for (int j = 0; j < 3; j++) {
-    printf("%d", call_func1(funcs[j]));
-    if (j < 2) printf(", ");
-    free(funcs[j]);
-  }
-  printf("]\n");
+  i = 7; // depois do for, i vale 2
 }
+
 
 //-------BLOCO DE CÓDIGO EQUIVALENTE AO PYTHON COM CLOSURE-------------------//
 
@@ -37,32 +32,48 @@ typedef struct {
   int val; // Armazena valores
 } Func2;
 
-int call_func2(Func2* f) {
+static int call_func2(Func2* f) {
   return f->val;  // retorna o valor armazenado diretamente
 }
 
-void closure() {
-  Func2* funcs[3];
-
+static void closure(Func2** funcs) {
   for (int i = 0; i < 3; ++i) {
     funcs[i] = malloc(sizeof(int));
-    funcs[i]->val = i;  // Captura VALOR atual de i
+    if (funcs[i]) {
+      funcs[i]->val = i;  // Captura VALOR atual de i
+    }
   }
-
-  printf("Resultados código com closure: [");
-  for (int j = 0; j < 3; j++) {
-    printf("%d", call_func2(funcs[j]));
-    if (j < 2) printf(", ");
-    free(funcs[j]);
-  }
-  printf("]\n");
 }
+
 
 //---------------------------------------------------------------------------//
 
 int main() {
   setlocale(LC_ALL, "pt_br");
-  ponteiros();
-  closure();
+
+  Func1* func1[3];
+  ponteiros(func1);
+
+  printf("Resultados código da questão:  [");
+  for (int j = 0; j < 3; j++) {
+    printf("%d", call_func1(func1[j]));
+    if (j < 2) printf(", ");
+    free(func1[j]);
+  }
+  printf("]\n");
+
+  //---------------------------------------------------------------------------//
+
+  Func2* func2[3];
+  closure(func2);
+
+  printf("Resultados código com closure: [");
+  for (int j = 0; j < 3; j++) {
+    printf("%d", call_func2(func2[j]));
+    if (j < 2) printf(", ");
+    free(func2[j]);
+  }
+  printf("]\n");
+
   return 0;
 }
