@@ -1,11 +1,11 @@
 #include <stdio.h>
 
-#ifdef __APPLE__
-#define INI 32
-#define END 128
-#else
+#ifdef _WIN64
 #define INI 1
 #define END 255
+#else
+#define INI 32
+#define END 128
 #endif
 
 void line() {

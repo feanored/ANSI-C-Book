@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <locale.h>
 
-//-------BLOCO DE CÓDIGO EQUIVALENTE AO PYTHON DA QUESTÃO--------------------//
+//-------BLOCO DE CÓDIGO EQUIVALENTE AO PYTHON NATIVO--------------------//
 
 typedef struct {
   int* val;  // Armazena ponteiros
@@ -17,7 +17,7 @@ static void ponteiros(Func1** funcs) {
 
   for (int j = 0; j < 3; ++j) {
     i = j;
-    funcs[j] = malloc(sizeof(int));
+    funcs[j] = (Func1*) malloc(sizeof(int));
     if (funcs[j]) {
       funcs[j]->val = &i;  // armazena endereço de i
     }
@@ -38,7 +38,7 @@ static int call_func2(Func2* f) {
 
 static void closure(Func2** funcs) {
   for (int i = 0; i < 3; ++i) {
-    funcs[i] = malloc(sizeof(int));
+    funcs[i] = (Func2*) malloc(sizeof(int));
     if (funcs[i]) {
       funcs[i]->val = i;  // Captura VALOR atual de i
     }
@@ -49,7 +49,7 @@ static void closure(Func2** funcs) {
 //---------------------------------------------------------------------------//
 
 int main() {
-  setlocale(LC_ALL, "pt_br");
+  setlocale(LC_ALL, "PT_br");
 
   Func1* func1[3];
   ponteiros(func1);
