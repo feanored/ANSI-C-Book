@@ -5,7 +5,8 @@ project(AnsiDev C)
 
 # Define flags para conformidade com ANSI C
 if (MSVC)
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} /Za /O2 /W4")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} /permissive- /O2 /W4")
+    set(CMAKE_CXX_STANDARD 11)
 elseif (${CMAKE_GENERATOR} MATCHES "Xcode")
     set(CMAKE_CXX_STANDARD 11)
     set(CMAKE_CXX_STANDARD_REQUIRED True)
