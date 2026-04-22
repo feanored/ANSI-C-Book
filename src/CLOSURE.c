@@ -7,7 +7,7 @@ typedef struct {
   int* val;  // Armazena ponteiros
 } Func1;
 
-static int call_func1(Func1* f) {
+static __attribute__((noinline)) int call_func1(Func1* f) {
   return *(f->val); // acessa valor armazenado no ponteiro
 }
 
@@ -16,9 +16,9 @@ static void ponteiros(Func1** funcs) {
 
   for (int j = 0; j < 3; ++j) {
     i = j;
-    funcs[j] = (Func1*) malloc(sizeof(int));
+    funcs[j] = (Func1*) malloc(sizeof(int*));
     if (funcs[j]) {
-      funcs[j]->val = &i;  // armazena endereo de i
+      funcs[j]->val = &i;  // armazena endereco de i
     }
   }
   // i = 7; // depois do for, i valeria 2

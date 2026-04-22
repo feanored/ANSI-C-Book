@@ -28,12 +28,15 @@ elseif (MSVC)
 elseif (${CMAKE_GENERATOR} MATCHES "Xcode")
     set(CMAKE_CXX_STANDARD 11)
     set(CMAKE_CXX_STANDARD_REQUIRED True)
-else()
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c99 -Wall")
+else() # Linux
+    set(CMAKE_C_COMPILER "gcc")
+    set(CMAKE_C_STANDARD 99)
+    set(CMAKE_C_STANDARD_REQUIRED ON)
+    add_compile_options(-Wall -O2)
 endif()
 
 # Encontra todos os arquivos .c na pasta
-file(GLOB SOURCE_FILES "src/*.C")
+file(GLOB SOURCE_FILES "src/*.c")
 
 # Para cada arquivo encontrado, cria um executável
 foreach(SOURCE_FILE ${SOURCE_FILES})
