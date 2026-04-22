@@ -1,13 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#ifdef _WIN64
+  #define NOINLINE 
+#else
+  #define NOINLINE __attribute__((noinline))
+#endif
+
 //-------BLOCO DE CODIGO EQUIVALENTE AO PYTHON NATIVO--------------------//
 
 typedef struct {
   int* val;  // Armazena ponteiros
 } Func1;
 
-static __attribute__((noinline)) int call_func1(Func1* f) {
+static NOINLINE int call_func1(Func1* f) {
   return *(f->val); // acessa valor armazenado no ponteiro
 }
 
