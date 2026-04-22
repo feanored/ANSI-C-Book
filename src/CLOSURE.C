@@ -82,3 +82,24 @@ int main() {
 
   return 0;
 }
+
+
+/*
+--- OUTPUTS POR SO ---
+
+- MAC: 
+./CLOSURE
+Interno com ponteiros: [2, 2, 2]
+Externo com ponteiros: [73896, 73896, 73896]
+Externo com valores:   [0, 1, 2]
+
+- LINUX:
+
+
+- WINDOWS (MSVC):
+
+
+- WINDOWS (CLANG):
+
+
+*/
