@@ -1,17 +1,35 @@
 cmake_minimum_required(VERSION 3.10)
 
+# Configura o Clang
+if (CLANG AND WIN32)
+    set(CMAKE_C_COMPILER "clang")
+    set(CMAKE_LINKER "lld-link")
+
+    if (NOT CMAKE_GENERATOR STREQUAL "Ninja")
+        message(FATAL_ERROR "Use: cmake .. -DCLANG=1 -G Ninja")
+    endif()
+endif()
+
+# Release como padrão se não especificado
+if (NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Release)
+endif()
+
 # Projeto C
 project(AnsiDev C)
 
 # Define flags para conformidade com ANSI C
-if (MSVC)
+if (CLANG AND WIN32)
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -O2")
+    message(STATUS "Usando CLANG como compilador: ${CMAKE_C_COMPILER}")
+elseif (MSVC)
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} /permissive- /O2 /W4")
     set(CMAKE_CXX_STANDARD 11)
 elseif (${CMAKE_GENERATOR} MATCHES "Xcode")
     set(CMAKE_CXX_STANDARD 11)
     set(CMAKE_CXX_STANDARD_REQUIRED True)
 else()
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c++98 -Wall")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c99 -Wall")
 endif()
 
 # Encontra todos os arquivos .c na pasta

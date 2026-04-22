@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <locale.h>
 
 //-------BLOCO DE CODIGO EQUIVALENTE AO PYTHON NATIVO--------------------//
 
@@ -22,12 +21,13 @@ static void ponteiros(Func1** funcs) {
       funcs[j]->val = &i;  // armazena endereço de i
     }
   }
-  i = 7; // depois do for, i vale 2
+  // i = 7; // depois do for, i valeria 2
   
-  printf("Interno sem closure: [");
+  printf("Interno com ponteiros: [");
   for (int j = 0; j < 3; j++) {
     printf("%d", call_func1(funcs[j]));
     if (j < 2) printf(", ");
+    // free(funcs[j]);
   }
   printf("]\n");
 }
@@ -56,12 +56,11 @@ static void closure(Func2** funcs) {
 //---------------------------------------------------------------------------//
 
 int main() {
-  setlocale(LC_ALL, "PT_br");
-
+  //****************************************************//
   Func1* func1[3];
   ponteiros(func1);
 
-  printf("Externo sem closure: [");
+  printf("Externo com ponteiros: [");
   for (int j = 0; j < 3; j++) {
     printf("%d", call_func1(func1[j]));
     if (j < 2) printf(", ");
@@ -69,12 +68,11 @@ int main() {
   }
   printf("]\n");
 
-  //---------------------------------------------------------------------------//
-
+  //****************************************************//
   Func2* func2[3];
   closure(func2);
 
-  printf("Externo com closure: [");
+  printf("Externo com valores:   [");
   for (int j = 0; j < 3; j++) {
     printf("%d", call_func2(func2[j]));
     if (j < 2) printf(", ");

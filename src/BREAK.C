@@ -1,23 +1,24 @@
 #include <stdio.h>
-
 #ifdef _WIN64
-#ifndef WIN32_LEAN_AND_MEAN
-#define WIN32_LEAN_AND_MEAN
 #include <windows.h>
-#endif
 #endif
 
 int main() {
   for (int i = 0; i < 1E9; i++) {
+    printf("%d\n", i);
     #ifdef _WIN64
-    if (GetAsyncKeyState(0x13) & 0x8000) { // tecla 'Pause'
-      printf("\n[PAUSE detectado] Programa suspenso. Pressione ENTER para retomar.\n");
-      MessageBoxA(NULL, "Programa suspenso. Clique OK e pressione ENTER para retomar.", "Tecla PAUSE detectada!",
-          MB_ICONWARNING | MB_OK | MB_SETFOREGROUND | MB_TOPMOST);
+    if (GetAsyncKeyState(0x20) & 0x8000) { // tecla 'SPACE' -> keyDown (0x8000)
+      printf("\n[PAUSA solicitada] Programa suspenso. Clique OK para continuar.\n");
+      MessageBoxA(NULL, "Programa suspenso. Clique OK para continuar.", "PAUSA solicitada!",
+        MB_ICONWARNING | MB_OK | MB_SETFOREGROUND | MB_TOPMOST);
+    }
+	if (GetAsyncKeyState(0x51) & 0x0001) { // tecla 'q' ou 'Q' -> keyUp (0x0001)
+      printf("\n[QUIT solicitado] Programa interrompido.\n");
+      MessageBoxA(NULL, "Programa interrompido. Clique OK para sair.", "QUIT solicitado!",
+        MB_ICONERROR | MB_OK | MB_SETFOREGROUND | MB_TOPMOST);
+      break;
     }
     #endif
-    printf("%d\n", i);
-
   }
   return 0;
 }
