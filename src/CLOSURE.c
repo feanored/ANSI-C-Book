@@ -99,13 +99,22 @@ Interno com ponteiros: [2, 2, 2]
 Externo com ponteiros: [73896, 73896, 73896]
 Externo com valores:   [0, 1, 2]
 
-- LINUX:
+- LINUX (GCC 14):
+./CLOSURE
+Interno com ponteiros: [2, 2, 2]
+Externo com ponteiros: [2, 2, 2]
+Externo com valores:   [0, 1, 2]
 
+- WINDOWS (DEBUG):
+CLOSURE.exe
+Interno com ponteiros: [2, 2, 2]
+Externo com ponteiros: [-858993460, -858993460, -858993460]
+Externo com valores:   [0, 1, 2]
 
-- WINDOWS (MSVC):
-
-
-- WINDOWS (CLANG):
-
+- WINDOWS (REL):
+CLOSURE.exe
+Interno com ponteiros: [2, 2, 2]
+Externo com ponteiros: [2, 2, 2]
+Externo com valores:   [0, 1, 2]
 
 */
